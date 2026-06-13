@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TandartsController;
-use App\Http\controllers\MondhygienistController;
-use App\Http\controllers\PraktijkmanagementController;
-use App\Http\controllers\AssistentController;
-use App\Http\controllers\PatientController;
+use App\Http\Controllers\MondhygienistController;
+use App\Http\Controllers\PraktijkmanagementController;
+use App\Http\Controllers\AssistentController;
+use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,9 +20,31 @@ Route::get('/tandarts', [TandartsController::class, 'index'])
 Route::get('/mondhygienist', [MondhygienistController::class, 'index'])
     ->name('mondhygienist.index')
     ->middleware(['auth', 'role:admin,mondhygienist']);
-    
+
+# praktijkmanagement routes
+
 Route::get('/praktijkmanagement', [PraktijkmanagementController::class, 'index'])
     ->name('praktijkmanagement.index')
+    ->middleware(['auth', 'role:admin,praktijkmanagement']);
+
+Route::get('/praktijkmanagement/userrolles', [PraktijkmanagementController::class, 'manageUserrolles'])
+    ->name('praktijkmanagement.userrolles')
+    ->middleware(['auth', 'role:admin,praktijkmanagement']);
+
+Route::get('/praktijkmanagement/{id}/edit', [PraktijkmanagementController::class, 'edit'])
+    ->name('praktijkmanagement.edit')
+    ->middleware(['auth', 'role:admin,praktijkmanagement']);
+
+Route::post('/praktijkmanagement/{id}/edit', [PraktijkmanagementController::class, 'update'])
+    ->name('praktijkmanagement.update')
+    ->middleware(['auth', 'role:admin,praktijkmanagement']);
+
+Route::delete('/praktijkmanagement/{id}', [PraktijkmanagementController::class, 'destroy'])
+    ->name('praktijkmanagement.destroy')
+    ->middleware(['auth', 'role:admin,praktijkmanagement']);
+
+Route::get('/praktijkmanagement/{id}', [PraktijkmanagementController::class, 'show'])
+    ->name('praktijkmanagement.show')
     ->middleware(['auth', 'role:admin,praktijkmanagement']);
 
 Route::get('/assistent', [AssistentController::class, 'index'])

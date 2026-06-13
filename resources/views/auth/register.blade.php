@@ -39,6 +39,16 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+    <!--Confirm Rolname-->
+    <!--div class="mt-4"-->
+            <!--x-input-label for="rolename" :value="__('Rolename')" /-->
+
+            <!--x-text-input id="rolename" class="block mt-1 w-full"
+                            type="text"
+                            name="rolename" required autocomplete="rolename" /-->
+
+            <!--x-input-error :messages="$errors->get('rolename')" class="mt-2" /-->
+    <!--/div-->
 
         <!-- Confirm rolename -->
         <div class="mt-4">
